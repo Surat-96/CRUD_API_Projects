@@ -1,0 +1,39 @@
+
+<h3> WELCOME {{ role | uppercase }}</h3>
+
+<h4>THIS IS ADMIN MANAGE USER COMPONENT</h4>
+
+<!-- FOR VIEW USER DETAILS -->
+<div class="container">
+    
+  <table class="table table-bordered table-hover table-responsive">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Country</th>
+          <th>Language</th>
+          <th>Gender</th>
+          <th>DOB</th>
+          <th>Address</th>
+          <th>Reg Date</th>
+        </tr>
+      </thead>
+      <!-- ITERATE EMPLOYEE DOCUMENT -->
+      <tr *ngFor="let userobj of userservice.alluserdetails">
+        <td>{{userobj.fullname}}</td>
+        <td>{{userobj.email}}</td>
+        <td>{{userobj.mobileno}}</td>
+        <td>{{userobj.country}}</td>
+        <td>{{userobj.english}}&nbsp;{{userobj.bengali}}&nbsp;{{userobj.hindi}}</td>
+        <td>{{userobj.gender}}</td>
+        <td>{{userobj.dob}}</td>
+        <td>{{userobj.address}}</td>
+        <td>{{userobj.regdate}}</td>
+        <td> <button type="button" class="btn btn-danger" (click)="deleteUser(userobj.email)">Delete </button> </td>
+      </tr>
+    </table>
+</div>
+
+

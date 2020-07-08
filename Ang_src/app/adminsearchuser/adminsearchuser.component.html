@@ -1,0 +1,76 @@
+<h3> WELCOME {{ role | uppercase }}</h3>
+
+<div [hidden]="!issearchformvisible" > 
+
+ <div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-8 mx-auto">
+      <div class="card">
+        <div class="card-body" style="background-color: #eeefff">
+          <div class="mt-2 text-center">
+            <h4 style="color: brown;">SEARCH USER: AdminSearchUser Component</h4>
+          </div>
+               
+          <div class="mt-4">
+            <div class="form-group">
+               <label for="email" class="text-uppercase font-weight-bold text-primary">Email Id *</label>
+               <input type="text" name="email" class="form-control" placeholder="Enter Email Id" 
+                 [(ngModel)]="email" >
+            </div>
+                                                  
+            <button class="btn btn-success btn-block" (click)="searchUser()">SEARCH</button>
+                    
+          </div> <!-- Form tag div -->
+         </div> <!-- Card Body End -->
+       </div> <!-- Card End -->
+     </div> <!-- Col alignment end -->
+    </div> <!-- Row End -->
+ </div> <!-- Container End -->
+</div>
+
+<br/>
+<br/>
+
+<h2 [hidden]="!isnorecordfoundvisible" > NO RECORD FOUND </h2>
+
+<div [hidden]="!issearchresultvisible" > 
+  <!-- FOR VIEW USER DETAILS -->
+ <div class="container">
+  
+ <table class="table table-bordered table-hover table-responsive">
+     <thead>
+       <tr>
+         <th>Name</th>
+         <th>Email</th>
+         <th>Mobile</th>
+         <th>Country</th>
+         <th>Language</th>
+         <th>Gender</th>
+         <th>DOB</th>
+         <th>Address</th>
+         <th>Reg Date</th>
+       </tr>
+     </thead>
+     <!-- ITERATE EMPLOYEE DOCUMENT -->
+     <tr>
+       <td>{{userservice.singleuserobject.fullname}}</td>
+       <td>{{userservice.singleuserobject.email}}</td>
+       <td>{{userservice.singleuserobject.mobileno}}</td>
+       <td>{{userservice.singleuserobject.country}}</td>
+       <td>{{userservice.singleuserobject.english}}&nbsp;{{userservice.singleuserobject.bengali}}&nbsp;{{userservice.singleuserobject.hindi}}</td>
+       <td>{{userservice.singleuserobject.gender}}</td>
+       <td>{{userservice.singleuserobject.dob}}</td>
+       <td>{{userservice.singleuserobject.address}}</td>
+       <td>{{userservice.singleuserobject.regdate}}</td>
+         <!-- CALL displayUserDetails method and PASS FULL ROW INFORMATION AS object -->
+       <td> <button type="button" class="btn btn-primary" 
+           (click)="displayUserDetails(userservice.singleuserobject)" >UPDATE </button> </td>
+     </tr>
+   </table>
+ </div>
+ </div>
+
+ <!-- DISPLAY FORM FILLED WITH ALL PASSED VALUE -->
+<div *ngIf="isupdatebuttonclicked"> 
+  <app-adminupdateuser [childupdatecomponentuserobj] = "parentsearchcomponentuserobj" ></app-adminupdateuser>
+</div>

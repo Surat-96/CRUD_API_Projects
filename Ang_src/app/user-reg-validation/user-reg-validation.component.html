@@ -1,0 +1,158 @@
+<!-- main app container -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-8 mx-auto">
+      <div class="card">
+        <div class="card-body" style="background-color: #eeefff">
+                                                     
+          <div class="mt-2 text-center">
+            <h3 style="color: brown;">Create Account : Register Component</h3>
+            <div [hidden]="!isregsuccessmsgvisible" style="color: rgb(2, 85, 36);font-weight: bold;font-size: large;">REGISTRATION SUCCESSFUL</div>  
+          </div>
+              
+          <div class="mt-4 text-left">
+          <!-- LOCAL REFERENCE #userregform="ngForm  -->
+          <!-- (ngSubmit) ATTRIBUTE..SUBMIT EVENT CALL onSubmit FUNCTION and PASS LOCAL REFERENCE userregform -->
+            <form #userregform="ngForm" (ngSubmit)="onSubmit(userregform)">
+                       
+                <div class="form-group">
+                  <label for="name" class="text-uppercase font-weight-bold text-primary" >Name</label>
+                  <input type="text" name="fullname" required class="form-control" placeholder="Enter Your Full Name" 
+                   #refveriablefullname ="ngModel" pattern="^[a-zA-Z ]{3,20}$"
+                   [class.is-invalid] = "refveriablefullname.touched && refveriablefullname.invalid" 
+                   [(ngModel)]="userservice.singleuserobject.fullname">
+                  
+                   <!-- DISPLAY ERROR MSG  -->
+                   <div *ngIf="refveriablefullname.errors && (refveriablefullname.touched && refveriablefullname.invalid)">
+                     <small class="text-danger" *ngIf="refveriablefullname.errors.required">
+                          <strong>Full Name Is Required</strong>
+                     </small>
+                     <small class="text-danger" *ngIf="refveriablefullname.errors.pattern">
+                          <strong>Enter Valid Name</strong>
+                     </small>
+                   </div>
+                 </div>
+                
+
+                <div class="form-group">
+                  <label for="email" class="text-uppercase font-weight-bold text-primary">Email</label>
+                  <input type="email" name="email" required class="form-control" placeholder="Enter Your Email" 
+                   #refveriableemail ="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
+                   [class.is-invalid] = "refveriableemail.touched && refveriableemail.invalid" 
+                   [(ngModel)]="userservice.singleuserobject.email">
+
+                    <!-- DISPLAY ERROR MSG  -->
+                  <div *ngIf="refveriableemail.errors && (refveriableemail.touched && refveriableemail.invalid)">
+                      <small class="text-danger" *ngIf="refveriableemail.errors.required">
+                          <strong>Email Is Required</strong>
+                      </small>
+                      <small class="text-danger" *ngIf="refveriableemail.errors.pattern">
+                          <strong>Enter Valid Email Id</strong>
+                      </small>
+                  </div>
+                </div>
+            
+                                    
+                <div class="form-group">
+                    <label for="mobileno" class="text-uppercase font-weight-bold text-primary">Mobile No</label>
+                    <input type="tel" name="mobileno" required class="form-control" placeholder="Enter Your Mobile No" 
+                    #refveriablemobileno ="ngModel" pattern="^[6789]\d{9}$" 
+                    [class.is-invalid] = "refveriablemobileno.touched && refveriablemobileno.invalid"
+                    [(ngModel)]="userservice.singleuserobject.mobileno">
+
+                    <!-- DISPLAY ERROR MSG  -->
+                  <div *ngIf="refveriablemobileno.errors && (refveriablemobileno.touched && refveriablemobileno.invalid)">
+                      <small class="text-danger" *ngIf="refveriablemobileno.errors.required">
+                          <strong>Mobile No Is Required</strong>
+                      </small>
+                      <small class="text-danger" *ngIf="refveriablemobileno.errors.pattern">
+                          <strong>Mobile No Should Be 10 Digits</strong>
+                      </small>
+                  </div>
+                </div>
+                  
+                
+                <div class="form-group">
+                    <label for="country" class="text-uppercase font-weight-bold text-primary">Country</label> &nbsp;&nbsp;&nbsp;
+                    <select name="country" #refveriablecountry = "ngModel" [(ngModel)]="userservice.singleuserobject.country">
+                        <option *ngFor="let countryname of countrylist" [value]="countryname">{{countryname}}</option>
+                    </select>
+                </div>
+                  
+                
+                <div class="form-group">
+                    <label for="language" class="text-uppercase font-weight-bold text-primary">Language Known</label> &nbsp;&nbsp;
+                    <input type="checkbox" name="english" [(ngModel)]="userservice.singleuserobject.english" />
+                        <span class="text-info">English</span> &nbsp;&nbsp;
+                    <input type="checkbox" name="bengali" [(ngModel)]="userservice.singleuserobject.bengali" />
+                        <span class="text-info">Bengali</span> &nbsp;&nbsp;
+                    <input type="checkbox" name="hindi" [(ngModel)]="userservice.singleuserobject.hindi" />
+                        <span class="text-info">Hindi</span>
+                </div>
+                  
+                
+                <div class="form-group">
+                    <label for="gender" class="text-uppercase font-weight-bold text-primary">Gender</label> &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="gender" required value="Male" #refvergender="ngModel" [(ngModel)]="userservice.singleuserobject.gender" />
+                        <span class="text-info">Male</span> &nbsp;&nbsp;
+                    <input type="radio" name="gender" required value="Female" #refvergender="ngModel" [(ngModel)]="userservice.singleuserobject.gender" />
+                        <span class="text-info">Female</span>
+                    
+                    <!-- DISPLAY ERROR MSG  -->
+                    <div *ngIf="refvergender.touched && refvergender.invalid"> 
+                      <small class="text-danger">
+                         <strong> Gender Required.</strong>
+                      </small>
+                    </div> 
+                </div>
+                   
+                
+                <div class="form-group">
+                    <label for="dob" class="text-uppercase font-weight-bold text-primary">Date Of Birth</label>
+                    <input type="date" name="dob" required class="form-control" max="2012-12-31" 
+                     #refveriabledob ="ngModel" [class.is-invalid] = "refveriabledob.touched && refveriabledob.invalid" 
+                     [(ngModel)]="userservice.singleuserobject.dob">
+
+                     <!-- DISPLAY ERROR MSG  -->
+                   <small class="text-danger" [class.d-none]= "refveriabledob.valid || refveriabledob.untouched">
+                      <strong>DOB Is Required</strong>
+                   </small>
+                </div>
+                  
+                
+                <div class="form-group">
+                  <label for="password" class="text-uppercase font-weight-bold text-primary">Password</label>
+                  <input type="password" name="password" required class="form-control" placeholder="Enter password" 
+                    #refveriablepassword ="ngModel" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{4,8}$" 
+                    [class.is-invalid] = "refveriablepassword.touched && refveriablepassword.invalid" 
+                    [(ngModel)]="userservice.singleuserobject.password">
+
+                  <!-- DISPLAY ERROR MSG  -->
+                  <div *ngIf="refveriablepassword.errors && (refveriablepassword.touched && refveriablepassword.invalid)">
+                      <small class="text-danger" *ngIf="refveriablepassword.errors.required">
+                          <strong>Password Is Required</strong>
+                      </small>
+                      <small class="text-danger" *ngIf="refveriablepassword.errors.pattern">
+                          <strong>1 Digit, 1 LowerCase, 1 Uppercase, Min 4 Max 8</strong>
+                      </small>
+                  </div>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="address" class="text-uppercase font-weight-bold text-primary">Address</label> &nbsp;&nbsp;&nbsp;<br/>
+                    <textarea placeholder="Write your Address Here" rows="4" cols="68" name="address" 
+                    [(ngModel)]="userservice.singleuserobject.address"></textarea>
+                </div>
+                        
+                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+                      <!--DISABLE CREATE ACCOUNT BUTTON UNTIL ALL VALIDATION ARE NOT VALID -->        
+                <button type="submit" class="btn btn-primary" [disabled]="!userregform.form.valid">CREATE ACOUNT</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-dark" (click)="resetForm(userregform)">RESET FORM</button>
+            </form>
+        </div> <!-- Form tag div -->
+      </div> <!-- Card Body End -->
+     </div> <!-- Card End -->
+   </div> <!-- Col alignment end -->
+  </div> <!-- Row End -->
+</div> <!-- Container End -->

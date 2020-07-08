@@ -1,0 +1,85 @@
+<div class="container">
+  <div [hidden]="!isUpdateConfirmationMsgVisible" style="color: crimson;font-weight: bold;font-size: large;">UPDATE SUCCESSFULL</div>
+</div>
+
+<div [hidden]="!isUpdateFormVisible">
+<!-- main app container -->
+<div class="container">
+<div class="row">
+  <div class="col-md-6 col-sm-8 mx-auto">
+   <div class="card">
+    <div class="card-body" style="background-color: #eeefff">
+                                                  
+     <div class="mt-2 text-center">
+      <h3 style="color: brown;">Update Details : Update Component</h3>
+     </div>
+           
+     <div class="mt-4">
+  <!-- LOCAL REFERENCE #userregform="ngForm  -->
+      <form #userregform="ngForm" (ngSubmit)="onSubmit(userregform)">
+                    
+       <input type="hidden" name="email" [(ngModel)]="userservice.singleuserobject.email">
+                    
+          <div class="form-group">
+            <label for="name" class="text-uppercase font-weight-bold text-primary">Name</label>
+            <input type="text" name="fullname" class="form-control" placeholder="Enter Your Full Name"  
+               [(ngModel)]="userservice.singleuserobject.fullname" readonly>
+          </div>
+                     
+          <div class="form-group">
+            <label for="mobileno" class="text-uppercase font-weight-bold text-primary">Mobile No</label>
+            <input type="tel" name="mobileno" class="form-control" placeholder="Enter Your Mobile No" 
+               [(ngModel)]="userservice.singleuserobject.mobileno">
+          </div>
+
+          <div class="form-group">
+            <label for="country" class="text-uppercase font-weight-bold text-primary">Country</label> &nbsp;&nbsp;&nbsp;
+            <select name="country" [(ngModel)]="userservice.singleuserobject.country">
+                <option *ngFor="let countryname of countrylist" [value]="countryname">{{countryname}}</option>
+            </select>
+          </div>
+                     
+          <div class="form-group">
+            <label for="language" class="text-uppercase font-weight-bold text-primary">Language Known</label> &nbsp;&nbsp;
+            <input type="checkbox" name="english" [(ngModel)]="userservice.singleuserobject.english" />
+                <span class="text-info">English</span> &nbsp;&nbsp;
+            <input type="checkbox" name="bengali" [(ngModel)]="userservice.singleuserobject.bengali" />
+                <span class="text-info">Bengali</span> &nbsp;&nbsp;
+            <input type="checkbox" name="hindi" [(ngModel)]="userservice.singleuserobject.hindi" />
+                <span class="text-info">Hindi</span>
+          </div>
+                     
+          <div class="form-group">
+            <label for="gender" class="text-uppercase font-weight-bold text-primary">Gender</label> &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="gender" value="Male" [(ngModel)]="userservice.singleuserobject.gender" />
+                  <span class="text-info">Male</span> &nbsp;&nbsp;
+              <input type="radio" name="gender" value="Female" [(ngModel)]="userservice.singleuserobject.gender" />
+                  <span class="text-info">Female</span>
+          </div>
+                     
+          <div class="form-group">
+             <label for="dob" class="text-uppercase font-weight-bold text-primary">Date Of Birth</label>
+             <input type="date" name="dob" class="form-control" max="2012-12-31" [(ngModel)]="userservice.singleuserobject.dob" >
+          </div>
+                     
+          <div class="form-group">
+             <label for="password" class="text-uppercase font-weight-bold text-primary">Password</label>
+             <input type="password" name="password" class="form-control" placeholder="Enter password" [(ngModel)]="userservice.singleuserobject.password">
+          </div>
+
+          <div class="form-group">
+             <label for="address" class="text-uppercase font-weight-bold text-primary">Address</label> &nbsp;&nbsp;&nbsp;<br/>
+             <textarea name="address" placeholder="Write your Address Here" rows="4" cols="68" [(ngModel)]="userservice.singleuserobject.address"></textarea>
+          </div>
+
+          <input type="hidden" name="regdate" [(ngModel)]="userservice.singleuserobject.regdate">
+                     
+          <button type="submit" class="btn btn-primary">UPDATE INFORMATION</button> 
+                 
+        </form>
+       </div> <!-- Form tag div -->
+      </div> <!-- Card Body End -->
+     </div> <!-- Card End -->
+   </div> <!-- Col alignment end -->
+ </div> <!-- Row End -->
+</div> <!-- Container End -->

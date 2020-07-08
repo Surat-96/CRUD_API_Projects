@@ -1,0 +1,21 @@
+<div>
+  <nav class="navbar navbar-expand-sm bg-light">
+      <ul class="navbar-nav" routerLinkActive="active">
+    
+      <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="register" *ngIf="!islogIn()">Registration</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="userlogin" *ngIf="!islogIn()">User Login</a></li>
+      
+      <li class="nav-item"><a class="nav-link" routerLink="adminlogin" *ngIf="!islogIn()">AdminLogin</a></li>
+
+      <li class="nav-item"><a class="nav-link" routerLink="adminmanageuser" *ngIf="islogIn()">ManageUser</a>  </li>
+      <li class="nav-item"><a class="nav-link" routerLink="adminsearchuser" *ngIf="islogIn()">Search User</a>  </li>
+
+      <li class="nav-item"><a class="nav-link" routerLink="adminmanageaccounts" *ngIf="islogIn()">ManageAccounts</a>  </li>
+
+      <li class="nav-item"><a class="nav-link" routerLink="logout" (click)="logout()" *ngIf="islogIn()">Logout</a></li> 
+
+    </ul>
+  </nav>
+   
+</div>
